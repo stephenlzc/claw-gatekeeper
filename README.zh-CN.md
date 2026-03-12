@@ -292,9 +292,9 @@ MIT 许可证 - 详见 LICENSE 文件。
 ## 🙏 致谢
 
 本项目创建是为了应对：
-- [中国国家计算机网络应急技术处理协调中心 (CNCERT/CC) 安全警告](https://www.chinadaily.com.cn/)
-- [OpenClaw CVE 数据库](https://cve.mitre.org/)
-- 社区对 AI 代理安全的担忧
+- 针对 AI 代理工具的安全风险警告
+- 社区对自主 AI 系统安全的担忧
+- 用户对更可控 AI 助手的需求
 
 **免责声明**：这是一个社区创建的安全工具，不是 OpenClaw 官方产品。使用风险自负。
 

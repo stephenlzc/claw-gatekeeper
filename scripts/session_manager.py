@@ -294,9 +294,18 @@ class SessionManager:
     
     def write_audit_log(self, entry: Dict[str, Any]):
         """
-        Write entry to Operate_Audit.log with timestamp
-        Format: [TIMESTAMP] [LEVEL] Operation details
+        Write entry to Operate_Audit.log with timestamp and emoji
+        Format: [TIMESTAMP] [EMOJI LEVEL] [TYPE] DECISION: Details
         """
+        # Risk level to emoji mapping
+        RISK_EMOJIS = {
+            "CRITICAL": "🔴",
+            "HIGH": "🟠",
+            "MEDIUM": "🟡",
+            "LOW": "🟢",
+            "UNKNOWN": "⚪"
+        }
+        
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
         risk_level = entry.get('risk_level', 'UNKNOWN')
         operation_type = entry.get('operation_type', 'UNKNOWN')
@@ -307,7 +316,11 @@ class SessionManager:
         if risk_level == "LOW":
             return
         
-        log_line = f"[{timestamp}] [{risk_level}] [{operation_type}] {decision}: {operation_detail}\n"
+        # Get emoji for risk level
+        emoji = RISK_EMOJIS.get(risk_level, "⚪")
+        
+        # Format with emoji: [TIMESTAMP] [EMOJI LEVEL] [TYPE] DECISION: Details
+        log_line = f"[{timestamp}] [{emoji} {risk_level}] [{operation_type}] {decision}: {operation_detail}\n"
         
         try:
             with open(self.audit_log_file, 'a', encoding='utf-8') as f:

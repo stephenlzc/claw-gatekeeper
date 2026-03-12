@@ -1,4 +1,4 @@
-# Claw-Guardian User Guide
+# Claw-Gatekeeper User Guide
 
 Complete guide for using Claw-Guardian effectively.
 
@@ -43,7 +43,7 @@ Complete guide for using Claw-Guardian effectively.
 When Guardian intercepts an operation, you'll see:
 
 ```
-🛡️ CLAW-GUARDIAN SECURITY INTERCEPTION
+🛡️ CLAW-GATEKEEPER SECURITY INTERCEPTION
 ============================================================
 
 📋 Operation: 📁 File Operation

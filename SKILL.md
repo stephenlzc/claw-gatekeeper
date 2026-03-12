@@ -1,5 +1,5 @@
 ---
-name: openclaw-guardian
+name: claw-gatekeeper
 description: |
   OpenClaw Guardian is a comprehensive security control system for OpenClaw that intercepts 
   high-risk operations and requires human confirmation before execution. It acts as a 
@@ -24,7 +24,7 @@ description: |
 
 ## Overview
 
-Claw-Guardian is a comprehensive security control layer for OpenClaw that intercepts potentially dangerous operations and manages them according to their risk level:
+Claw-Gatekeeper is a comprehensive security control layer for OpenClaw that intercepts potentially dangerous operations and manages them according to their risk level:
 
 | Risk Level | Score | Behavior | Session Approval |
 |------------|-------|----------|------------------|
@@ -143,7 +143,7 @@ Claw-Guardian is designed to be a **persistent/resident skill** in OpenClaw. It 
 
 ```bash
 # Install the skill
-openclaw skill install claw-guardian
+openclaw skill install claw-gatekeeper
 
 # Add to persistent skills (so it loads every session)
 openclaw skill persist claw-guardian
@@ -177,7 +177,7 @@ Add to `~/.openclaw/config.json`:
 
 ```bash
 # Initialize with default settings
-python3 ~/.openclaw/skills/openclaw-guardian/scripts/policy_config.py show
+python3 ~/.claw-gatekeeper/scripts/policy_config.py show
 ```
 
 ### 2. Set Operation Mode

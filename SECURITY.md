@@ -1,4 +1,4 @@
-# OpenClaw Guardian Security Deployment Guide
+# Claw Gatekeeper Security Deployment Guide
 
 > **Human-in-the-Loop Security Mode**
 
@@ -18,7 +18,7 @@
 
 ### Step 1: Check Current Configuration
 ```bash
-cd ~/.openclaw-guardian/scripts
+cd ~/.claw-gatekeeper/scripts
 ./deploy-secure.sh --check
 ```
 
@@ -113,32 +113,32 @@ cat conversation.txt | ./scripts/sanitizer.sh --stdin > clean.txt
 
 ### Log Location
 ```
-~/.openclaw-guardian/sessions/Operate_Audit.log
+~/.claw-gatekeeper/sessions/Operate_Audit.log
 ```
 
 ### Permission Settings
 ```bash
-chmod 700 ~/.openclaw-guardian/sessions
-chmod 600 ~/.openclaw-guardian/sessions/Operate_Audit.log
+chmod 700 ~/.claw-gatekeeper/sessions
+chmod 600 ~/.claw-gatekeeper/sessions/Operate_Audit.log
 ```
 
 ### Automatic Cleanup (30-day retention)
 
 The hardening script automatically adds a cron job:
 ```cron
-0 0 * * * find ~/.openclaw-guardian/sessions -name '*.log' -mtime +30 -delete
+0 0 * * * find ~/.claw-gatekeeper/sessions -name '*.log' -mtime +30 -delete
 ```
 
 ### Manual Verification
 ```bash
 # Check log size
-ls -lh ~/.openclaw-guardian/sessions/Operate_Audit.log
+ls -lh ~/.claw-gatekeeper/sessions/Operate_Audit.log
 
 # View recent entries
-tail -20 ~/.openclaw-guardian/sessions/Operate_Audit.log
+tail -20 ~/.claw-gatekeeper/sessions/Operate_Audit.log
 
 # Check permissions
-ls -la ~/.openclaw-guardian/sessions/
+ls -la ~/.claw-gatekeeper/sessions/
 ```
 
 ---
@@ -146,7 +146,7 @@ ls -la ~/.openclaw-guardian/sessions/
 ## 🔄 Restore Default Configuration
 
 ```bash
-cd ~/.openclaw-guardian/scripts
+cd ~/.claw-gatekeeper/scripts
 ./deploy-secure.sh --restore
 ```
 
@@ -157,20 +157,20 @@ cd ~/.openclaw-guardian/scripts
 ### 1. Principle of Least Privilege
 ```bash
 # Configuration file permissions
-chmod 600 ~/.openclaw-guardian/config.json
+chmod 600 ~/.claw-gatekeeper/config.json
 
 # Directory permissions
-chmod 700 ~/.openclaw-guardian
-chmod 700 ~/.openclaw-guardian/sessions
+chmod 700 ~/.claw-gatekeeper
+chmod 700 ~/.claw-gatekeeper/sessions
 ```
 
 ### 2. Regular Auditing
 ```bash
 # Check for unusual denials
-python3 ~/.openclaw-guardian/scripts/policy_config.py stats
+python3 ~/.claw-gatekeeper/scripts/policy_config.py stats
 
 # View high-risk operation logs
-grep "🔴 CRITICAL" ~/.openclaw-guardian/sessions/Operate_Audit.log
+grep "🔴 CRITICAL" ~/.claw-gatekeeper/sessions/Operate_Audit.log
 ```
 
 ### 3. Session Management
@@ -234,25 +234,25 @@ Hardened mode provides maximum security but has the following impacts:
 ### Issue: All operations being denied
 ```bash
 # Check mode settings
-python3 ~/.openclaw-guardian/scripts/policy_config.py mode
+python3 ~/.claw-gatekeeper/scripts/policy_config.py mode
 
 # If in emergency mode, switch back to standard
-python3 ~/.openclaw-guardian/scripts/policy_config.py mode standard
+python3 ~/.claw-gatekeeper/scripts/policy_config.py mode standard
 ```
 
 ### Issue: Log file too large
 ```bash
 # Manually clean old logs
-find ~/.openclaw-guardian/sessions -name '*.log' -mtime +7 -delete
+find ~/.claw-gatekeeper/sessions -name '*.log' -mtime +7 -delete
 ```
 
 ### Issue: Recover accidentally deleted configuration
 ```bash
 # View backup list
-ls -la ~/.openclaw-guardian/backups/
+ls -la ~/.claw-gatekeeper/backups/
 
 # Manual restore
-cp ~/.openclaw-guardian/backups/config.json.bak.XXXX ~/.openclaw-guardian/config.json
+cp ~/.claw-gatekeeper/backups/config.json.bak.XXXX ~/.claw-gatekeeper/config.json
 ```
 
 ---

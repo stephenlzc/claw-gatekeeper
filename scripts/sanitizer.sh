@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# OpenClaw Guardian - Conversation Sanitizer
+# Claw Gatekeeper - Conversation Sanitizer
 # Removes sensitive patterns from text before processing
 #
 # Usage:

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Claw-Guardian Session Manager
+Claw-Gatekeeper Session Manager
 Manages session-level permissions and state for risk-based auto-approval
 
 Features:
@@ -54,7 +54,7 @@ class SessionManager:
     def __init__(self, session_dir: Optional[str] = None, 
                  timeout: int = DEFAULT_SESSION_TIMEOUT):
         self.session_dir = Path(session_dir) if session_dir else \
-                          Path.home() / ".openclaw-guardian" / "sessions"
+                          Path.home() / ".claw-gatekeeper" / "sessions"
         self.session_dir.mkdir(parents=True, exist_ok=True)
         
         self.timeout = timeout

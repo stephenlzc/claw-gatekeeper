@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Claw-Guardian Policy Configuration Manager
+Claw-Gatekeeper Policy Configuration Manager
 Manages security policies, whitelist, blacklist, and operational modes
 
 Merged from: SafeClaw (policy_manager.py) + Claw-Guardian (policy_config.py)
@@ -162,7 +162,7 @@ class PolicyConfig:
     }
     
     def __init__(self, config_path: Optional[str] = None):
-        self.config_dir = Path.home() / ".openclaw-guardian"
+        self.config_dir = Path.home() / ".claw-gatekeeper"
         self.config_path = Path(config_path) if config_path else self.config_dir / "config.json"
         self.backup_dir = self.config_dir / "backups"
         self.config_dir.mkdir(exist_ok=True)

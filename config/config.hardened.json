@@ -1,5 +1,5 @@
 {
-  "_comment": "Hardened Security Configuration for OpenClaw Guardian v0.1.0",
+  "_comment": "Hardened Security Configuration for Claw Gatekeeper v0.1.0",
   "_description": "Maximum safety mode: all operations require human approval, strict rules engine, no auto-allow",
   "_security_level": "maximum",
   

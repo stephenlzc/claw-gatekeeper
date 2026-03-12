@@ -1,4 +1,4 @@
-# Claw-Guardian Risk Matrix
+# Claw-Gatekeeper Risk Matrix
 
 Complete reference for risk scoring methodology used by Claw-Guardian.
 

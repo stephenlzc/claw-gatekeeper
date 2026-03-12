@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Claw-Guardian Risk Assessment Engine
+Claw-Gatekeeper Risk Assessment Engine
 Analyzes operations and assigns risk scores for OpenClaw safety control
 
 Merged from: SafeClaw (risk_analyzer.py) + Claw-Guardian (risk_engine.py)

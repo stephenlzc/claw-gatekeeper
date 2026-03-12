@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Claw-Guardian Audit Log Manager
+Claw-Gatekeeper Audit Log Manager
 Records and analyzes all security decisions with comprehensive reporting
 
 Merged from: SafeClaw (operation_logger.py) + Claw-Guardian (audit_log.py)
@@ -39,7 +39,7 @@ class AuditLog:
     """Comprehensive audit log manager"""
     
     def __init__(self, log_dir: Optional[str] = None):
-        self.log_dir = Path(log_dir) if log_dir else Path.home() / ".openclaw-guardian" / "logs"
+        self.log_dir = Path(log_dir) if log_dir else Path.home() / ".claw-gatekeeper" / "logs"
         self.log_dir.mkdir(parents=True, exist_ok=True)
         self.current_log = self._get_current_log_path()
         

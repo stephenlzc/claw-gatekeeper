@@ -2,7 +2,7 @@
 
 ---
 
-## 🎉 OpenClaw Guardian v0.1.0
+## 🎉 Claw Gatekeeper v0.1.0
 
 > A Safety Brake for OpenClaw with Session-Aware Risk Management
 
@@ -48,14 +48,14 @@ OpenClaw Guardian is a comprehensive security control system for OpenClaw that i
 
 ```bash
 # Download and install
-curl -L -o openclaw-guardian.skill \
-  https://github.com/stephenlzc/openclaw-guardian/releases/download/v0.1.0/openclaw-guardian.skill
+curl -L -o claw-gatekeeper.skill \
+  https://github.com/stephenlzc/claw-gatekeeper/releases/download/v0.1.0/claw-gatekeeper.skill
 
-openclaw skill install openclaw-guardian.skill
-openclaw skill persist openclaw-guardian
+openclaw skill install claw-gatekeeper.skill
+openclaw skill persist claw-gatekeeper
 
 # Initialize
-python3 ~/.openclaw-guardian/scripts/policy_config.py mode standard
+python3 ~/.claw-gatekeeper/scripts/policy_config.py mode standard
 ```
 
 ### 🔧 Core Scripts
@@ -81,7 +81,7 @@ Use this skill to add a layer of protection until official security improvements
 ### 📁 Project Structure
 
 ```
-openclaw-guardian/
+claw-gatekeeper/
 ├── README.md                    # English documentation
 ├── README.zh-CN.md              # Chinese documentation
 ├── SKILL.md                     # Skill manifest
@@ -98,9 +98,9 @@ openclaw-guardian/
 
 ### 🔗 Links
 
-- **Repository**: https://github.com/stephenlzc/openclaw-guardian
-- **Documentation**: https://raw.githubusercontent.com/stephenlzc/openclaw-guardian/main/README.md
-- **Issues**: https://github.com/stephenlzc/openclaw-guardian/issues
+- **Repository**: https://github.com/stephenlzc/claw-gatekeeper
+- **Documentation**: https://raw.githubusercontent.com/stephenlzc/claw-gatekeeper/main/README.md
+- **Issues**: https://github.com/stephenlzc/claw-gatekeeper/issues
 
 ### 🙏 Acknowledgments
 
@@ -154,14 +154,14 @@ OpenClaw Guardian 是一个全面的 OpenClaw 安全控制系统，可以拦截�
 
 ```bash
 # 下载并安装
-curl -L -o openclaw-guardian.skill \
-  https://github.com/stephenlzc/openclaw-guardian/releases/download/v0.1.0/openclaw-guardian.skill
+curl -L -o claw-gatekeeper.skill \
+  https://github.com/stephenlzc/claw-gatekeeper/releases/download/v0.1.0/claw-gatekeeper.skill
 
-openclaw skill install openclaw-guardian.skill
-openclaw skill persist openclaw-guardian
+openclaw skill install claw-gatekeeper.skill
+openclaw skill persist claw-gatekeeper
 
 # 初始化
-python3 ~/.openclaw-guardian/scripts/policy_config.py mode standard
+python3 ~/.claw-gatekeeper/scripts/policy_config.py mode standard
 ```
 
 ### 🔧 核心脚本
@@ -187,7 +187,7 @@ python3 ~/.openclaw-guardian/scripts/policy_config.py mode standard
 ### 📁 项目结构
 
 ```
-openclaw-guardian/
+claw-gatekeeper/
 ├── README.md                    # 英文文档
 ├── README.zh-CN.md              # 中文文档
 ├── SKILL.md                     # Skill 清单
@@ -204,9 +204,9 @@ openclaw-guardian/
 
 ### 🔗 链接
 
-- **代码仓库**: https://github.com/stephenlzc/openclaw-guardian
-- **文档**: https://raw.githubusercontent.com/stephenlzc/openclaw-guardian/main/README.md
-- **问题反馈**: https://github.com/stephenlzc/openclaw-guardian/issues
+- **代码仓库**: https://github.com/stephenlzc/claw-gatekeeper
+- **文档**: https://raw.githubusercontent.com/stephenlzc/claw-gatekeeper/main/README.md
+- **问题反馈**: https://github.com/stephenlzc/claw-gatekeeper/issues
 
 ### 🙏 致谢
 
@@ -235,4 +235,4 @@ openclaw-guardian/
 
 ---
 
-**Full Changelog**: https://github.com/stephenlzc/openclaw-guardian/commits/v0.1.0
+**Full Changelog**: https://github.com/stephenlzc/claw-gatekeeper/commits/v0.1.0

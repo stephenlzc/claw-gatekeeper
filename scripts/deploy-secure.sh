@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# OpenClaw Guardian - Secure Deployment Script
+# Claw Gatekeeper - Secure Deployment Script
 # Deploys Guardian in maximum security mode (human-in-the-loop)
 #
 # Usage: ./deploy-secure.sh [--check | --apply | --restore]
@@ -11,7 +11,7 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CONFIG_DIR="$HOME/.openclaw-guardian"
+CONFIG_DIR="$HOME/.claw-gatekeeper"
 BACKUP_DIR="$CONFIG_DIR/backups"
 HARDENED_CONFIG="$SCRIPT_DIR/../config/config.hardened.json"
 CURRENT_CONFIG="$CONFIG_DIR/config.json"
@@ -124,7 +124,7 @@ setup_log_rotation() {
     fi
     
     # Check if rotation job already exists
-    if crontab -l 2>/dev/null | grep -q "openclaw-guardian.*find.*sessions.*delete"; then
+    if crontab -l 2>/dev/null | grep -q "claw-gatekeeper.*find.*sessions.*delete"; then
         print_success "Log rotation already configured"
         return
     fi

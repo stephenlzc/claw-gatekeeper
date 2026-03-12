@@ -1,7 +1,7 @@
 ---
-name: claw-guardian
+name: openclaw-guardian
 description: |
-  Claw-Guardian is a comprehensive security control system for OpenClaw that intercepts 
+  OpenClaw Guardian is a comprehensive security control system for OpenClaw that intercepts 
   high-risk operations and requires human confirmation before execution. It acts as a 
   "safety brake" with session-level auto-approval for MEDIUM/HIGH risks after initial 
   user confirmation.
@@ -18,7 +18,7 @@ description: |
   **Note:** This skill should be loaded as a persistent/resident skill in OpenClaw.
 ---
 
-# 🛡️ Claw-Guardian
+# 🛡️ OpenClaw Guardian
 
 > The Safety Brake for OpenClaw - Session-aware protection for risky operations
 
@@ -177,7 +177,7 @@ Add to `~/.openclaw/config.json`:
 
 ```bash
 # Initialize with default settings
-python3 ~/.openclaw/skills/claw-guardian/scripts/policy_config.py show
+python3 ~/.openclaw/skills/openclaw-guardian/scripts/policy_config.py show
 ```
 
 ### 2. Set Operation Mode

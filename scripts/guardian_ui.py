@@ -84,7 +84,7 @@ class GuardianUI:
     AUTO_ALLOW_RISKS = ["LOW"]
     
     def __init__(self, log_dir: Optional[str] = None, use_colors: bool = True):
-        self.log_dir = log_dir or os.path.expanduser("~/.claw-guardian/logs")
+        self.log_dir = log_dir or os.path.expanduser("~/.openclaw-guardian/logs")
         os.makedirs(self.log_dir, exist_ok=True)
         self.use_colors = use_colors and sys.stdout.isatty()
         

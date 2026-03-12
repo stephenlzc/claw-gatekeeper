@@ -54,7 +54,7 @@ class SessionManager:
     def __init__(self, session_dir: Optional[str] = None, 
                  timeout: int = DEFAULT_SESSION_TIMEOUT):
         self.session_dir = Path(session_dir) if session_dir else \
-                          Path.home() / ".claw-guardian" / "sessions"
+                          Path.home() / ".openclaw-guardian" / "sessions"
         self.session_dir.mkdir(parents=True, exist_ok=True)
         
         self.timeout = timeout

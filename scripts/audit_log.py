@@ -39,7 +39,7 @@ class AuditLog:
     """Comprehensive audit log manager"""
     
     def __init__(self, log_dir: Optional[str] = None):
-        self.log_dir = Path(log_dir) if log_dir else Path.home() / ".claw-guardian" / "logs"
+        self.log_dir = Path(log_dir) if log_dir else Path.home() / ".openclaw-guardian" / "logs"
         self.log_dir.mkdir(parents=True, exist_ok=True)
         self.current_log = self._get_current_log_path()
         

@@ -1,6 +1,6 @@
-# 🛡️ Claw-Guardian
+# 🛡️ OpenClaw Guardian
 
-> A Safety Brake for OpenClaw with Session-Aware Risk Management
+> A Safety Brake for OpenClaw - OpenClaw Guardian with Session-Aware Risk Management
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![English](https://img.shields.io/badge/Language-English-blue.svg)](README.md)
@@ -14,7 +14,7 @@
 
 **This is a temporary security measure.**
 
-Claw-Guardian was created to address current security gaps in OpenClaw's autonomous decision-making capabilities. Once OpenClaw implements comprehensive built-in safety controls, this project may be discontinued.
+OpenClaw Guardian was created to address current security gaps in OpenClaw's autonomous decision-making capabilities. Once OpenClaw implements comprehensive built-in safety controls, this project may be discontinued.
 
 **Current Status**: OpenClaw (as of March 2026) has been identified with significant security concerns including multiple CVEs and warnings from national security agencies. Use this skill to add a layer of protection until official security improvements are released.
 
@@ -22,7 +22,7 @@ Claw-Guardian was created to address current security gaps in OpenClaw's autonom
 
 ## 🎯 What is Claw-Guardian?
 
-Claw-Guardian is a **persistent security layer** for OpenClaw that intercepts potentially dangerous operations and manages them according to their risk level, with intelligent session-aware approval.
+OpenClaw Guardian is a **persistent security layer** for OpenClaw that intercepts potentially dangerous operations and manages them according to their risk level, with intelligent session-aware approval.
 
 ### Risk-Based Behavior
 
@@ -50,8 +50,8 @@ Claw-Guardian is a **persistent security layer** for OpenClaw that intercepts po
 
 Copy and paste this prompt to your LLM agent (Claude Code, Cursor, Cline, etc.):
 
-> Install and configure Claw-Guardian by following the instructions here:  
-> https://raw.githubusercontent.com/stephenlzc/claw-guardian/main/README.md  
+> Install and configure OpenClaw Guardian by following the instructions here:  
+> https://raw.githubusercontent.com/stephenlzc/openclaw-guardian/main/README.md  
 > Make it a persistent skill and set it to standard mode.
 
 Or read the rest of this README, but seriously, let an agent do it. Humans fat-finger configs.
@@ -62,12 +62,12 @@ Fetch and execute the installation:
 
 ```bash
 # Download and install
-curl -L -o claw-guardian.skill https://github.com/stephenlzc/claw-guardian/releases/latest/download/claw-guardian.skill
+curl -L -o claw-guardian.skill https://github.com/stephenlzc/openclaw-guardian/releases/latest/download/claw-guardian.skill
 openclaw skill install claw-guardian.skill
 openclaw skill persist claw-guardian
 
 # Initialize configuration
-python3 ~/.openclaw/skills/claw-guardian/scripts/policy_config.py mode standard
+python3 ~/.openclaw/skills/openclaw-guardian/scripts/policy_config.py mode standard
 ```
 
 ### Skip This README
@@ -75,7 +75,7 @@ python3 ~/.openclaw/skills/claw-guardian/scripts/policy_config.py mode standard
 We're past the era of reading docs. Just paste this into your agent:
 
 > Read this and set up Claw-Guardian as a persistent security layer for OpenClaw:  
-> https://raw.githubusercontent.com/stephenlzc/claw-guardian/main/README.md
+> https://raw.githubusercontent.com/stephenlzc/openclaw-guardian/main/README.md
 
 ---
 
@@ -124,13 +124,13 @@ Subsequent similar operations:
 
 ```bash
 # Check current session
-python3 ~/.openclaw/skills/claw-guardian/scripts/guardian_ui.py session
+python3 ~/.openclaw/skills/openclaw-guardian/scripts/guardian_ui.py session
 
 # View active approvals
-python3 ~/.openclaw/skills/claw-guardian/scripts/session_manager.py list
+python3 ~/.openclaw/skills/openclaw-guardian/scripts/session_manager.py list
 
 # View audit log
-python3 ~/.openclaw/skills/claw-guardian/scripts/session_manager.py check --lines 50
+python3 ~/.openclaw/skills/openclaw-guardian/scripts/session_manager.py check --lines 50
 ```
 
 ---
@@ -156,10 +156,10 @@ All MEDIUM and above operations are logged to `~/.claw-guardian/sessions/Operate
 
 ```bash
 # Recent entries
-python3 ~/.openclaw/skills/claw-guardian/scripts/session_manager.py check --lines 100
+python3 ~/.openclaw/skills/openclaw-guardian/scripts/session_manager.py check --lines 100
 
 # Export to file
-python3 ~/.openclaw/skills/claw-guardian/scripts/session_manager.py check --lines 1000 > audit.txt
+python3 ~/.openclaw/skills/openclaw-guardian/scripts/session_manager.py check --lines 1000 > audit.txt
 ```
 
 ---
@@ -170,16 +170,16 @@ python3 ~/.openclaw/skills/claw-guardian/scripts/session_manager.py check --line
 
 ```bash
 # Standard mode (recommended)
-python3 ~/.openclaw/skills/claw-guardian/scripts/policy_config.py mode standard
+python3 ~/.openclaw/skills/openclaw-guardian/scripts/policy_config.py mode standard
 
 # Strict mode (maximum security)
-python3 ~/.openclaw/skills/claw-guardian/scripts/policy_config.py mode strict
+python3 ~/.openclaw/skills/openclaw-guardian/scripts/policy_config.py mode strict
 
 # Loose mode (minimal interruptions)
-python3 ~/.openclaw/skills/claw-guardian/scripts/policy_config.py mode loose
+python3 ~/.openclaw/skills/openclaw-guardian/scripts/policy_config.py mode loose
 
 # Emergency mode (everything requires confirmation)
-python3 ~/.openclaw/skills/claw-guardian/scripts/policy_config.py mode emergency
+python3 ~/.openclaw/skills/openclaw-guardian/scripts/policy_config.py mode emergency
 ```
 
 ### Managing Session Timeout
@@ -197,13 +197,13 @@ To change, edit `~/.claw-guardian/config.json`:
 
 ```bash
 # Add trusted paths
-python3 ~/.openclaw/skills/claw-guardian/scripts/policy_config.py add whitelist paths ~/Projects
+python3 ~/.openclaw/skills/openclaw-guardian/scripts/policy_config.py add whitelist paths ~/Projects
 
 # Add trusted commands
-python3 ~/.openclaw/skills/claw-guardian/scripts/policy_config.py add whitelist commands "git status"
+python3 ~/.openclaw/skills/openclaw-guardian/scripts/policy_config.py add whitelist commands "git status"
 
 # Add trusted skills
-python3 ~/.openclaw/skills/claw-guardian/scripts/policy_config.py add whitelist skills docx
+python3 ~/.openclaw/skills/openclaw-guardian/scripts/policy_config.py add whitelist skills docx
 ```
 
 ---
@@ -268,10 +268,10 @@ Traditional security tools interrupt every risky operation, causing:
 
 ## 🔗 Quick Links
 
-- **Repository**: https://github.com/stephenlzc/claw-guardian
-- **Releases**: https://github.com/stephenlzc/claw-guardian/releases
-- **Issues**: https://github.com/stephenlzc/claw-guardian/issues
-- **Raw README**: https://raw.githubusercontent.com/stephenlzc/claw-guardian/main/README.md
+- **Repository**: https://github.com/stephenlzc/openclaw-guardian
+- **Releases**: https://github.com/stephenlzc/openclaw-guardian/releases
+- **Issues**: https://github.com/stephenlzc/openclaw-guardian/issues
+- **Raw README**: https://raw.githubusercontent.com/stephenlzc/openclaw-guardian/main/README.md
 
 ---
 
@@ -293,7 +293,7 @@ MIT License - See [LICENSE](LICENSE) file for details.
 
 <div align="center">
 
-**Claw-Guardian** - Secure by Design, Convenient by Default 🛡️
+**OpenClaw Guardian** - Secure by Design, Convenient by Default 🛡️
 
 *Trust, but verify. Then verify again for CRITICAL.*
 

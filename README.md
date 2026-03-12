@@ -46,63 +46,36 @@ Claw-Guardian is a **persistent security layer** for OpenClaw that intercepts po
 
 ## 📦 Installation
 
-### For LLM Agents (Natural Language Instructions)
+### For Humans
 
-**Step 1: Download the skill package**
-```
-Download claw-guardian.skill from the releases page.
-```
+Copy and paste this prompt to your LLM agent (Claude Code, Cursor, Cline, etc.):
 
-**Step 2: Install to OpenClaw**
+> Install and configure Claw-Guardian by following the instructions here:  
+> https://raw.githubusercontent.com/stephenlzc/claw-guardian/main/README.md  
+> Make it a persistent skill and set it to standard mode.
+
+Or read the rest of this README, but seriously, let an agent do it. Humans fat-finger configs.
+
+### For LLM Agents
+
+Fetch and execute the installation:
+
 ```bash
-# Install the skill
+# Download and install
+curl -L -o claw-guardian.skill https://github.com/stephenlzc/claw-guardian/releases/latest/download/claw-guardian.skill
 openclaw skill install claw-guardian.skill
-
-# IMPORTANT: Make it persistent (loads every session)
 openclaw skill persist claw-guardian
+
+# Initialize configuration
+python3 ~/.openclaw/skills/claw-guardian/scripts/policy_config.py mode standard
 ```
 
-**Step 3: Verify persistent loading**
-```bash
-# Check that it's in persistent skills
-openclaw skill list --persistent
+### Skip This README
 
-# Should show: claw-guardian
-```
+We're past the era of reading docs. Just paste this into your agent:
 
-**Step 4: Initialize configuration**
-```bash
-# Create default configuration
-python3 ~/.openclaw/skills/claw-guardian/scripts/policy_config.py show
-```
-
-**Step 5: Test the installation**
-```bash
-# Test risk assessment
-python3 ~/.openclaw/skills/claw-guardian/scripts/risk_engine.py file delete ~/test.txt
-```
-
-### Persistent/Resident Configuration
-
-To ensure Claw-Guardian is always active:
-
-**Option A: CLI Command**
-```bash
-openclaw skill persist claw-guardian
-```
-
-**Option B: Config File**
-Edit `~/.openclaw/config.json`:
-```json
-{
-  "persistent_skills": ["claw-guardian"]
-}
-```
-
-**Option C: Environment Variable**
-```bash
-export OPENCLAW_PERSISTENT_SKILLS="claw-guardian"
-```
+> Read this and set up Claw-Guardian as a persistent security layer for OpenClaw:  
+> https://raw.githubusercontent.com/stephenlzc/claw-guardian/main/README.md
 
 ---
 
@@ -151,13 +124,13 @@ Subsequent similar operations:
 
 ```bash
 # Check current session
-python3 scripts/guardian_ui.py session
+python3 ~/.openclaw/skills/claw-guardian/scripts/guardian_ui.py session
 
 # View active approvals
-python3 scripts/session_manager.py list
+python3 ~/.openclaw/skills/claw-guardian/scripts/session_manager.py list
 
 # View audit log
-python3 scripts/session_manager.py check --lines 50
+python3 ~/.openclaw/skills/claw-guardian/scripts/session_manager.py check --lines 50
 ```
 
 ---
@@ -176,17 +149,17 @@ All MEDIUM and above operations are logged to `~/.claw-guardian/sessions/Operate
 ### Log Format
 
 ```
-[TIMESTAMP] [RISK_LEVEL] [OPERATION_TYPE] DECISION: Operation details
+[TIMESTAMP] [EMOJI RISK_LEVEL] [OPERATION_TYPE] DECISION: Operation details
 ```
 
 ### Viewing Logs
 
 ```bash
 # Recent entries
-python3 scripts/session_manager.py check --lines 100
+python3 ~/.openclaw/skills/claw-guardian/scripts/session_manager.py check --lines 100
 
 # Export to file
-python3 scripts/session_manager.py check --lines 1000 > audit.txt
+python3 ~/.openclaw/skills/claw-guardian/scripts/session_manager.py check --lines 1000 > audit.txt
 ```
 
 ---
@@ -197,16 +170,16 @@ python3 scripts/session_manager.py check --lines 1000 > audit.txt
 
 ```bash
 # Standard mode (recommended)
-python3 scripts/policy_config.py mode standard
+python3 ~/.openclaw/skills/claw-guardian/scripts/policy_config.py mode standard
 
 # Strict mode (maximum security)
-python3 scripts/policy_config.py mode strict
+python3 ~/.openclaw/skills/claw-guardian/scripts/policy_config.py mode strict
 
 # Loose mode (minimal interruptions)
-python3 scripts/policy_config.py mode loose
+python3 ~/.openclaw/skills/claw-guardian/scripts/policy_config.py mode loose
 
 # Emergency mode (everything requires confirmation)
-python3 scripts/policy_config.py mode emergency
+python3 ~/.openclaw/skills/claw-guardian/scripts/policy_config.py mode emergency
 ```
 
 ### Managing Session Timeout
@@ -224,13 +197,13 @@ To change, edit `~/.claw-guardian/config.json`:
 
 ```bash
 # Add trusted paths
-python3 scripts/policy_config.py add whitelist paths ~/Projects
+python3 ~/.openclaw/skills/claw-guardian/scripts/policy_config.py add whitelist paths ~/Projects
 
 # Add trusted commands
-python3 scripts/policy_config.py add whitelist commands "git status"
+python3 ~/.openclaw/skills/claw-guardian/scripts/policy_config.py add whitelist commands "git status"
 
 # Add trusted skills
-python3 scripts/policy_config.py add whitelist skills docx
+python3 ~/.openclaw/skills/claw-guardian/scripts/policy_config.py add whitelist skills docx
 ```
 
 ---
@@ -240,6 +213,7 @@ python3 scripts/policy_config.py add whitelist skills docx
 ```
 claw-guardian/
 ├── README.md                    # This file
+├── README.zh-CN.md              # Chinese documentation
 ├── SKILL.md                     # Skill documentation
 ├── scripts/
 │   ├── risk_engine.py          # Risk assessment engine
@@ -292,6 +266,15 @@ Traditional security tools interrupt every risky operation, causing:
 
 ---
 
+## 🔗 Quick Links
+
+- **Repository**: https://github.com/stephenlzc/claw-guardian
+- **Releases**: https://github.com/stephenlzc/claw-guardian/releases
+- **Issues**: https://github.com/stephenlzc/claw-guardian/issues
+- **Raw README**: https://raw.githubusercontent.com/stephenlzc/claw-guardian/main/README.md
+
+---
+
 ## 🤝 Contributing
 
 Contributions welcome in:
@@ -304,7 +287,7 @@ Contributions welcome in:
 
 ## 📄 License
 
-MIT License - See LICENSE file for details.
+MIT License - See [LICENSE](LICENSE) file for details.
 
 ---
 

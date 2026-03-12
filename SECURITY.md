@@ -1,149 +1,149 @@
-# OpenClaw Guardian 安全部署指南
+# OpenClaw Guardian Security Deployment Guide
 
-> **Human-in-the-Loop Security Mode** | 人机回环安全模式
-
----
-
-## 🛡️ 安全模式概览
-
-| 模式 | 自动允许 | 人工确认 | 适用场景 |
-|-----|---------|---------|---------|
-| **默认 (Default)** | LOW + MEDIUM | HIGH + CRITICAL | 便捷使用 |
-| **加固 (Hardened)** | ❌ 无 | ✅ 全部 | **推荐** |
-| **紧急 (Emergency)** | ❌ 无 | ✅ 全部 + 延迟确认 | 高危环境 |
+> **Human-in-the-Loop Security Mode**
 
 ---
 
-## 🚀 快速加固（3步）
+## 🛡️ Security Mode Overview
 
-### Step 1: 备份当前配置
+| Mode | Auto-Allowed | Human Confirmation | Use Case |
+|------|--------------|-------------------|----------|
+| **Default** | LOW + MEDIUM | HIGH + CRITICAL | Daily convenience |
+| **Hardened** | ❌ None | ✅ All | **Recommended** |
+| **Emergency** | ❌ None | ✅ All + Delayed | High-risk environments |
+
+---
+
+## 🚀 Quick Hardening (3 Steps)
+
+### Step 1: Check Current Configuration
 ```bash
 cd ~/.openclaw-guardian/scripts
 ./deploy-secure.sh --check
 ```
 
-### Step 2: 应用加固配置
+### Step 2: Apply Hardened Configuration
 ```bash
 ./deploy-secure.sh --apply
 ```
 
-### Step 3: 验证部署
+### Step 3: Verify Deployment
 ```bash
 ./deploy-secure.sh --check
 ```
 
 ---
 
-## 📋 加固配置说明
+## 📋 Hardened Configuration Details
 
-### 核心安全设置
+### Core Security Settings
 
 ```json
 {
-  "strict_mode": true,           // 严格模式
-  "auto_allow_low": false,       // 禁止自动允许低风险
-  "auto_allow_medium": false,    // 禁止自动允许中风险
-  "auto_allow_high": false,      // 禁止自动允许高风险
-  "medium_requires_approval": true,  // 中等风险需确认
-  "confirmation_timeout": 300    // 5分钟确认超时
+  "strict_mode": true,           // Strict mode enabled
+  "auto_allow_low": false,       // Disable auto-allow for LOW risk
+  "auto_allow_medium": false,    // Disable auto-allow for MEDIUM risk
+  "auto_allow_high": false,      // Disable auto-allow for HIGH risk
+  "medium_requires_approval": true,  // MEDIUM requires confirmation
+  "confirmation_timeout": 300    // 5-minute confirmation timeout
 }
 ```
 
-### 风险等级行为
+### Risk Level Behaviors
 
-| 风险等级 | 分值范围 | 加固模式行为 |
-|---------|---------|------------|
-| 🔴 **CRITICAL** | 80-100 | 始终单独确认，无会话批准 |
-| 🟠 **HIGH** | 60-79 | 始终确认，可会话批准 |
-| 🟡 **MEDIUM** | 30-59 | 始终确认，可会话批准 |
-| 🟢 **LOW** | 0-29 | **始终确认**（与默认模式不同） |
+| Risk Level | Score Range | Hardened Mode Behavior |
+|------------|-------------|------------------------|
+| 🔴 **CRITICAL** | 80-100 | Always individual confirmation, no session approval |
+| 🟠 **HIGH** | 60-79 | Always confirm, session approval available |
+| 🟡 **MEDIUM** | 30-59 | Always confirm, session approval available |
+| 🟢 **LOW** | 0-29 | **Always confirm** (different from default mode) |
 
-### 黑名单增强
+### Enhanced Blacklist
 
-加固配置包含 **20+ 危险命令模式**：
-- 系统破坏：`rm -rf /`, `mkfs`, `dd if=`
-- 管道执行：`curl | sh`, `wget | bash`
-- 代码注入：`eval $(`, `python -c 'import os'`
-- 反向 shell：`nc -e`, `bash -i >& /dev/tcp`
+Hardened configuration includes **20+ dangerous command patterns**:
+- System destruction: `rm -rf /`, `mkfs`, `dd if=`
+- Pipe execution: `curl | sh`, `wget | bash`
+- Code injection: `eval $(`, `python -c 'import os'`
+- Reverse shells: `nc -e`, `bash -i >& /dev/tcp`
 
-### 敏感目录保护
+### Sensitive Directory Protection
 
 ```json
 "blacklist_paths": [
-  "~/.ssh",      // SSH 密钥
-  "~/.aws",      // AWS 凭证
-  "~/.kube",     // Kubernetes 配置
-  "~/.gnupg",    // GPG 密钥
-  "~/.docker",   // Docker 配置
-  "~/.openclaw"  // OpenClaw 自身配置
+  "~/.ssh",      // SSH keys
+  "~/.aws",      // AWS credentials
+  "~/.kube",     // Kubernetes configs
+  "~/.gnupg",    // GPG keys
+  "~/.docker",   // Docker configs
+  "~/.openclaw"  // OpenClaw self configs
 ]
 ```
 
 ---
 
-## 🔐 数据脱敏（可选）
+## 🔐 Data Sanitization (Optional)
 
-### 使用 Sanitizer
+### Using the Sanitizer
 
 ```bash
-# 检查文件是否包含敏感数据
+# Check if file contains sensitive data
 ./scripts/sanitizer.sh --check session.json --verbose
 
-# 脱敏处理
+# Sanitize file
 ./scripts/sanitizer.sh --file session.json > sanitized.json
 
-# 管道使用
+# Pipe usage
 cat conversation.txt | ./scripts/sanitizer.sh --stdin > clean.txt
 ```
 
-### 支持的敏感模式
+### Supported Sensitive Patterns
 
-| 类别 | 示例 |
-|-----|------|
-| 凭证 | Password, API Key, Secret Token |
-| 云服务 | AWS Key, GitHub Token, OpenAI Key |
-| 数据库 | MongoDB URI, PostgreSQL URI |
-| 个人信息 | Email, Credit Card, SSN |
-| 加密货币 | Bitcoin, Ethereum 地址 |
-| 证书 | JWT, RSA Key, SSH Key |
+| Category | Examples |
+|----------|----------|
+| Credentials | Password, API Key, Secret Token |
+| Cloud Services | AWS Key, GitHub Token, OpenAI Key |
+| Databases | MongoDB URI, PostgreSQL URI |
+| Personal Information | Email, Credit Card, SSN |
+| Cryptocurrency | Bitcoin, Ethereum addresses |
+| Certificates | JWT, RSA Key, SSH Key |
 
 ---
 
-## 📝 审计日志安全
+## 📝 Audit Log Security
 
-### 日志位置
+### Log Location
 ```
 ~/.openclaw-guardian/sessions/Operate_Audit.log
 ```
 
-### 权限设置
+### Permission Settings
 ```bash
 chmod 700 ~/.openclaw-guardian/sessions
 chmod 600 ~/.openclaw-guardian/sessions/Operate_Audit.log
 ```
 
-### 自动清理（30天保留）
+### Automatic Cleanup (30-day retention)
 
-加固脚本会自动添加 cron 任务：
+The hardening script automatically adds a cron job:
 ```cron
 0 0 * * * find ~/.openclaw-guardian/sessions -name '*.log' -mtime +30 -delete
 ```
 
-### 手动验证
+### Manual Verification
 ```bash
-# 查看日志大小
+# Check log size
 ls -lh ~/.openclaw-guardian/sessions/Operate_Audit.log
 
-# 查看最近记录
+# View recent entries
 tail -20 ~/.openclaw-guardian/sessions/Operate_Audit.log
 
-# 检查权限
+# Check permissions
 ls -la ~/.openclaw-guardian/sessions/
 ```
 
 ---
 
-## 🔄 恢复默认配置
+## 🔄 Restore Default Configuration
 
 ```bash
 cd ~/.openclaw-guardian/scripts
@@ -152,110 +152,110 @@ cd ~/.openclaw-guardian/scripts
 
 ---
 
-## 🎯 安全最佳实践
+## 🎯 Security Best Practices
 
-### 1. 最小权限原则
+### 1. Principle of Least Privilege
 ```bash
-# 配置文件权限
+# Configuration file permissions
 chmod 600 ~/.openclaw-guardian/config.json
 
-# 目录权限
+# Directory permissions
 chmod 700 ~/.openclaw-guardian
 chmod 700 ~/.openclaw-guardian/sessions
 ```
 
-### 2. 定期审计
+### 2. Regular Auditing
 ```bash
-# 检查是否有异常拒绝
+# Check for unusual denials
 python3 ~/.openclaw-guardian/scripts/policy_config.py stats
 
-# 查看高风险操作记录
+# View high-risk operation logs
 grep "🔴 CRITICAL" ~/.openclaw-guardian/sessions/Operate_Audit.log
 ```
 
-### 3. 会话管理
-- **会话批准**：MEDIUM/HIGH 风险可一次性批准会话内同类操作
-- **超时机制**：30分钟无活动自动过期
-- **CRITICAL 操作**：始终单独确认，不纳入会话批准
+### 3. Session Management
+- **Session Approval**: MEDIUM/HIGH risks can be approved once for the session
+- **Timeout Mechanism**: Automatically expires after 30 minutes of inactivity
+- **CRITICAL Operations**: Always require individual confirmation, excluded from session approval
 
-### 4. 网络隔离（高级）
-如果担心 LLM 数据外泄：
+### 4. Network Isolation (Advanced)
+If concerned about LLM data exfiltration:
 ```bash
-# 配置本地 Ollama 作为决策后端
+# Configure local Ollama as decision backend
 export GUARDIAN_MODEL_PROVIDER=ollama://localhost:11434
 ```
 
 ---
 
-## 📊 安全对比
+## 📊 Security Comparison
 
-| 安全指标 | 默认模式 | 加固模式 | 提升 |
-|---------|---------|---------|------|
-| 人机回环覆盖率 | 40% | **100%** | +60% |
-| 危险命令拦截 | 5种 | **20+种** | +300% |
-| 敏感目录保护 | 4个 | **10+个** | +150% |
-| 自动允许操作 | LOW + MEDIUM | **无** | -100% |
-| 确认超时 | 无 | **5分钟** | 新增 |
-| 日志保留 | 永久 | **30天** | 合规 |
-
----
-
-## ⚠️ 重要提示
-
-### 安全权衡
-
-加固模式提供了最高安全性，但会带来以下影响：
-
-1. **操作效率**：所有操作都需要确认，可能降低工作效率
-2. **用户体验**：频繁的确认提示可能显得繁琐
-3. **误报可能**：某些安全操作也可能被拦截
-
-### 建议
-
-- **日常使用**：标准模式 + 关键目录保护
-- **处理敏感数据**：加固模式
-- **团队协作**：统一加固配置，避免安全配置漂移
+| Security Metric | Default Mode | Hardened Mode | Improvement |
+|-----------------|--------------|---------------|-------------|
+| Human-in-the-loop coverage | 40% | **100%** | +60% |
+| Dangerous command interception | 5 patterns | **20+ patterns** | +300% |
+| Sensitive directory protection | 4 dirs | **10+ dirs** | +150% |
+| Auto-allowed operations | LOW + MEDIUM | **None** | -100% |
+| Confirmation timeout | None | **5 minutes** | Added |
+| Log retention | Permanent | **30 days** | Compliance |
 
 ---
 
-## 🔗 相关文件
+## ⚠️ Important Notes
 
-| 文件 | 用途 |
-|-----|------|
-| `config/config.hardened.json` | 加固配置文件 |
-| `scripts/deploy-secure.sh` | 一键加固部署 |
-| `scripts/sanitizer.sh` | 对话脱敏工具 |
-| `sessions/Operate_Audit.log` | 审计日志 |
+### Security Trade-offs
+
+Hardened mode provides maximum security but has the following impacts:
+
+1. **Operational Efficiency**: All operations require confirmation, potentially reducing productivity
+2. **User Experience**: Frequent confirmation prompts may feel cumbersome
+3. **False Positives**: Some safe operations may also be intercepted
+
+### Recommendations
+
+- **Daily use**: Standard mode + key directory protection
+- **Handling sensitive data**: Hardened mode
+- **Team collaboration**: Unified hardened configuration to prevent security drift
 
 ---
 
-## 🆘 故障排除
+## 🔗 Related Files
 
-### 问题：所有操作都被拒绝
+| File | Purpose |
+|------|---------|
+| `config/config.hardened.json` | Hardened configuration file |
+| `scripts/deploy-secure.sh` | One-click hardening deployment |
+| `scripts/sanitizer.sh` | Data sanitization tool |
+| `sessions/Operate_Audit.log` | Audit log |
+
+---
+
+## 🆘 Troubleshooting
+
+### Issue: All operations being denied
 ```bash
-# 检查模式设置
+# Check mode settings
 python3 ~/.openclaw-guardian/scripts/policy_config.py mode
 
-# 如果是 emergency 模式，切换回 standard
+# If in emergency mode, switch back to standard
 python3 ~/.openclaw-guardian/scripts/policy_config.py mode standard
 ```
 
-### 问题：日志文件过大
+### Issue: Log file too large
 ```bash
-# 手动清理旧日志
+# Manually clean old logs
 find ~/.openclaw-guardian/sessions -name '*.log' -mtime +7 -delete
 ```
 
-### 问题：恢复误删的配置
+### Issue: Recover accidentally deleted configuration
 ```bash
-# 查看备份列表
+# View backup list
 ls -la ~/.openclaw-guardian/backups/
 
-# 手动恢复
+# Manual restore
 cp ~/.openclaw-guardian/backups/config.json.bak.XXXX ~/.openclaw-guardian/config.json
 ```
 
 ---
 
 **Last Updated**: 2026-03-12  
-**Version**: v0.1.0-hardened
+**Version**: v0.1.1-hardened

@@ -206,6 +206,61 @@ python3 ~/.openclaw/skills/openclaw-guardian/scripts/policy_config.py add whitel
 
 ---
 
+## 🔐 Security Hardening
+
+For users who require maximum security (e.g., handling sensitive data, compliance requirements), Guardian provides a **zero-code-change hardening mode** that enables human-in-the-loop approval for ALL operations.
+
+### Quick Hardening (One Command)
+
+```bash
+# Deploy maximum security mode
+cd ~/.openclaw-guardian/scripts
+./deploy-secure.sh --apply
+```
+
+This applies:
+- ✅ **100% human confirmation** - All operations require approval
+- ✅ **Enhanced blacklist** - 20+ dangerous command patterns
+- ✅ **Sensitive directory protection** - SSH, AWS, K8s configs protected
+- ✅ **Secure audit logging** - 30-day retention with proper permissions
+- ✅ **Strict mode** - Maximum security policy
+
+### Security Modes Comparison
+
+| Mode | LOW Risk | MEDIUM Risk | HIGH Risk | CRITICAL Risk |
+|------|----------|-------------|-----------|---------------|
+| **Default** | Auto-allow | Confirm | Confirm | Confirm |
+| **Hardened** | **Confirm** | **Confirm** | **Confirm** | Confirm |
+
+### Data Sanitization (Optional)
+
+Pre-process content to remove sensitive data before Guardian analysis:
+
+```bash
+# Check for sensitive patterns
+./scripts/sanitizer.sh --check session.json --verbose
+
+# Sanitize file
+./scripts/sanitizer.sh --file conversation.txt > clean.txt
+
+# Pipe usage
+cat log.txt | ./scripts/sanitizer.sh --stdin
+```
+
+**Detected patterns**: Passwords, API keys, tokens, cloud credentials, crypto wallets, PII, certificates.
+
+### Restore Default Mode
+
+```bash
+./deploy-secure.sh --restore
+```
+
+### Security Documentation
+
+See [SECURITY.md](SECURITY.md) for detailed hardening guide.
+
+---
+
 ## 📁 Project Structure
 
 ```

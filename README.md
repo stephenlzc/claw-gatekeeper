@@ -50,11 +50,9 @@ OpenClaw Guardian is a **persistent security layer** for OpenClaw that intercept
 
 Copy and paste this prompt to your LLM agent (Claude Code, Cursor, Cline, etc.):
 
-> Install and configure OpenClaw Guardian by following the instructions here:  
-> https://raw.githubusercontent.com/stephenlzc/openclaw-guardian/main/README.md  
-> Make it a persistent skill and set it to standard mode.
-
-Or read the rest of this README, but seriously, let an agent do it. Humans fat-finger configs.
+```
+Install and configure OpenClaw Guardian by following the instructions here: https://raw.githubusercontent.com/stephenlzc/openclaw-guardian/main/README.md  Make it a persistent skill and set it to standard mode.Or read the rest of this README, but seriously, let an agent do it. Humans fat-finger configs.
+```
 
 ### For LLM Agents
 

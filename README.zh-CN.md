@@ -50,11 +50,9 @@ OpenClaw Guardian 是 OpenClaw 的**持久化安全层**，可以拦截潜在的
 
 复制粘贴这段提示给你的 LLM 代理（Claude Code、Cursor、Cline 等）：
 
-> 按照这里的说明安装和配置 Claw-Guardian：  
-> https://raw.githubusercontent.com/stephenlzc/openclaw-guardian/main/README.zh-CN.md  
-> 将其设置为常驻 skill，并使用标准模式。
-
-或者继续阅读本 README，但说真的，让代理来做吧。人类容易把配置搞砸。
+```
+按照这里的说明安装和配置 Claw-Guardian： https://raw.githubusercontent.com/stephenlzc/openclaw-guardian/main/README.zh-CN.md ，将其设置为常驻 skill，并使用标准模式。或者继续阅读本 README，但说真的，让代理来做吧。人类容易把配置搞砸。
+```
 
 ### 给 LLM 代理
 

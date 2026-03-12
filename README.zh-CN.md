@@ -146,10 +146,10 @@ python3 scripts/session_manager.py check --lines 50
 所有中等及以上风险的操作都会记录到 `~/.claw-guardian/sessions/Operate_Audit.log`：
 
 ```
-[2026-03-12 14:30:25.123] [HIGH] [skill] allow_session: 从 github 安装 data-processor
-[2026-03-12 14:31:10.456] [MEDIUM] [file] allow_session: 删除 ~/temp/cache
-[2026-03-12 14:32:05.789] [CRITICAL] [shell] allow_once: rm -rf ~/Projects/test
-[2026-03-12 14:35:15.234] [HIGH] [skill] deny_once: 拒绝安装来自未知源的 suspicious-tool
+[2026-03-12 14:30:25.123] [🟠 HIGH] [skill] allow_session: 从 github 安装 data-processor
+[2026-03-12 14:31:10.456] [🟡 MEDIUM] [file] allow_session: 删除 ~/temp/cache
+[2026-03-12 14:32:05.789] [🔴 CRITICAL] [shell] allow_once: rm -rf ~/Projects/test
+[2026-03-12 14:35:15.234] [🟠 HIGH] [skill] deny_once: 拒绝安装来自未知源的 suspicious-tool
 ```
 
 ### 日志格式

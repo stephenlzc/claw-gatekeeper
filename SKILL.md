@@ -312,7 +312,7 @@ python3 scripts/policy_config.py add blacklist paths ~/.ssh
 All MEDIUM and above operations are logged to `~/.claw-guardian/sessions/Operate_Audit.log`:
 
 ```
-[2026-03-12 14:30:25.123] [HIGH] [skill] allow_session: Installing data-processor@1.0.0 from github
+[2026-03-12 14:30:25.123] [🟠 HIGH] [skill] allow_session: Installing data-processor@1.0.0 from github
 [2026-03-12 14:31:10.456] [MEDIUM] [file] allow_session: delete ~/temp/cache (session approved)
 [2026-03-12 14:32:05.789] [CRITICAL] [shell] allow_once: rm -rf ~/Projects/test (manual confirm)
 [2026-03-12 14:35:15.234] [HIGH] [skill] deny_once: Installing suspicious-tool from unknown
@@ -337,7 +337,7 @@ python3 scripts/audit_log.py query 7 --risk HIGH --decision allow_session
 [TIMESTAMP] [RISK_LEVEL] [OPERATION_TYPE] DECISION: Details
 
 Example:
-[2026-03-12 14:30:25.123] [HIGH] [skill] allow_session: data-processor from github
+[2026-03-12 14:30:25.123] [🟠 HIGH] [skill] allow_session: data-processor from github
 ```
 
 ## Usage Examples
